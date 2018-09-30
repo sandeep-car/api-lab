@@ -67,7 +67,7 @@ def create_vm(mycluster,vmdisk_uuid,vm_name,storage_container_uuid,network_uuid)
                 "storage_container_uuid": storage_container_uuid,
                 "disk_address": {
                     # If you were cloning from a file in a storage container, you would instead update:
-                    # vm_dict["boot"]["disk_address"]["ndfs_filepath"] with "/storage_container/nfs_file_name"
+                    # "ndfs_filepath" to "/storage_container/nfs_file_name"
                     # where nfs_file_name is associated with the vdisk you want to clone.
                     "vmdisk_uuid": vmdisk_uuid,
                     "device_index": "0",

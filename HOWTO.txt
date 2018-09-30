@@ -31,3 +31,4 @@ cd ~/source
 git clone git://github.com/sandeep-car/api-lab.git
 # see your code here.
 cd ~/source/api-lab
+chmod 700 *.py

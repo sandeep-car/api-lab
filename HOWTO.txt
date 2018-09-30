@@ -1,4 +1,5 @@
-* Build Centos 7 VM.
+HOWTO get started:
+* Build Centos 7 VM on AHV cluster.
 yum groupinstall -y "Development Tools"
 yum -y install emacs wget perl-core zlib-devel libffi-devel bzip2-devel readline-devel libuuid-devel
 mkdir -p ~/source/openssl; cd ~/source/openssl

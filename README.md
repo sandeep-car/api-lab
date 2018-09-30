@@ -1,5 +1,5 @@
 # api-lab
-If there are any questions regarding the REST API, a good place to start is the REST API explorer (accessed via Prism Element), or from perusing https://developer.nutanix.com/reference/prism_element/v2/. 
+If there are any questions regarding the REST API, a good place to start is the REST API explorer (accessed via Prism Element), or from browsing https://developer.nutanix.com/api-reference/. The scripts in this repo utilize v1 and v2 of the REST API.
 
 REST API v1 docs are available at:
 https://portal.nutanix.com/#/page/docs/details?targetId=API-Ref-AOS-v58:API-Ref-AOS-v58

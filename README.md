@@ -1,4 +1,6 @@
 # api-lab
+HOWTO.txt describes how to set up a dev environment so one can get started.
+
 create_vm_from_image.py creates a VM using a vdisk cloned from an existing image. An exercise is to similarly create a VM however by cloning a vdisk from a file which exists in a storage container.This involves some additional steps:
 1. Get the UUID of the container using the container name. Use GET /storage_containers instead of GET /images as in get_images().
 2. Get a list of all vdisks in that container. Use GET /storage_containers/{uuid}/vdisks. Where {uuid} is the UUID of the storage container that you obtained from the previous step. So that involves a new function.

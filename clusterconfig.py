@@ -71,6 +71,14 @@ class my_api():
         # print("Response text:",server_response.text)
         return server_response.status_code ,json.loads(server_response.text)
 
+    # Get all VMs in the cluster.
+    def get_all_vm_info(self):
+
+        cluster_url = self.base_urlv2 + "vms/?include_vm_disk_config=true&include_vm_nic_config=true"
+        server_response = self.sessionv2.get(cluster_url)
+        # print("Response code: %s" % server_response.status_code)
+        return server_response.status_code ,json.loads(server_response.text)
+
     # Power on VM with this UUID.
     def power_on_vm(self, vmid):
         
@@ -80,5 +88,3 @@ class my_api():
         server_response = self.sessionv2.post(cluster_url, data=json.dumps(vm_power_post))
         # print("Response code: %s" % server_response.status_code)
         return server_response.status_code ,json.loads(server_response.text)
-
-

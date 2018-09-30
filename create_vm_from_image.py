@@ -44,6 +44,9 @@ def create_vm(mycluster,vmdisk_uuid,vm_name,storage_container_uuid,network_uuid)
     vm_dict["boot"] = {}
     vm_dict["boot"]["boot_device_type"] = "DISK"
     vm_dict["boot"]["disk_address"] = {}
+    # If you were cloning from a file in a storage container, you would instead update:
+    # vm_dict["boot"]["disk_address"]["ndfs_filepath"] with "/storage_container/nfs_file_name"
+    # where nfs_file_name is associated with the vdisk you want to clone.
     vm_dict["boot"]["disk_address"]["vmdisk_uuid"] = vmdisk_uuid
     vm_dict["boot"]["disk_address"]["device_index"] = "0"
     vm_dict["boot"]["disk_address"]["device_bus"] = "SCSI"
@@ -63,6 +66,9 @@ def create_vm(mycluster,vmdisk_uuid,vm_name,storage_container_uuid,network_uuid)
             "vm_disk_clone": {
                 "storage_container_uuid": storage_container_uuid,
                 "disk_address": {
+                    # If you were cloning from a file in a storage container, you would instead update:
+                    # vm_dict["boot"]["disk_address"]["ndfs_filepath"] with "/storage_container/nfs_file_name"
+                    # where nfs_file_name is associated with the vdisk you want to clone.
                     "vmdisk_uuid": vmdisk_uuid,
                     "device_index": "0",
                     "device_bus": "scsi"
@@ -98,6 +104,11 @@ if __name__ == "__main__":
             print("Did you remember to update the config file?")
             sys.exit(1)
         
+        # If we going to clone from a file in a container, you would do the following:
+        # 1. Get the UUID of the container using the container name. Use GET /storage_containers instead of GET /images.
+        # 2. Get a list of all vdisks in that container. Use GET /storage_containers/{uuid}/vdisks.
+        # 3. Get the nfs_file_name associated with the vdisk you want to clone.
+        # 4. In create_vm, use this to update vm_dict["ndfs_filepath"] instead of vm_dict["vmdisk_uuid"]
         status,resp = mycluster.get_images()
         all_images_list = resp["entities"]
         if (sys.argv[1] == "--image"):

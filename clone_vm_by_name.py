@@ -51,7 +51,7 @@ def clonevm(mycluster,vmid,vm_name):
         return server_response.status_code, cloneuuid, json.loads(server_response.text)
     except Exception as ex:
         print(ex)
-        return -1,cluster_url
+        return -1,0,cluster_url
 
 if __name__ == "__main__":
     try:

@@ -12,11 +12,10 @@
 # https://github.com/nelsonad77/acropolis-api-examples
 
 import sys
-import uuid
 import json
+import uuid
 import requests
 import clusterconfig as C
-from urllib.parse import quote
 from pprint import pprint
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
@@ -28,40 +27,6 @@ def PrintUsage():
     print ("<{}> <Image Name> <VM Name>".format(sys.argv[0]))
     print ("Will create a VM using a vDisk cloned from <Image Name>.")
     return
-
-# Power on VM with this UUID.
-def power_on_vm(mycluster, vmid):
-        
-    print("Powering on VM:",vmid)
-    cluster_url = mycluster.base_urlv2 + "vms/" + str(quote(vmid)) + "/set_power_state/"
-    vm_power_post = {"transition":"ON"}
-    server_response = mycluster.sessionv2.post(cluster_url, data=json.dumps(vm_power_post))
-    # print("Response code: %s" % server_response.status_code)
-    return server_response.status_code ,json.loads(server_response.text)
-
-# Return network info.
-# All we do here is return the first network UUID we see.
-# If you wanted to assign VMs to a particular network, you could do that here also.
-def get_network_info(mycluster):
-
-    cluster_url = mycluster.base_urlv2 + "/networks/"
-    print("Getting network info")
-    server_response = mycluster.sessionv2.get(cluster_url)
-    print("Response code:",server_response.status_code)
-    # Uncomment the following line to see what the cluster returned.
-    # print("Response text:",server_response.text)
-    return server_response.status_code ,json.loads(server_response.text)
-
-# Get all images in the cluster.
-def get_images(mycluster):
-
-    cluster_url = mycluster.base_urlv2 + "/images/"
-    print("Getting image info")
-    server_response = mycluster.sessionv2.get(cluster_url)
-    print("Response code:",server_response.status_code)
-    # Uncomment the following line to see what the cluster returned.
-    # print("Response text:",server_response.text)
-    return server_response.status_code ,json.loads(server_response.text)
 
 # Construct a proper POST specification and create a VM.
 def create_vm(mycluster,vmdisk_uuid,vm_name,storage_container_uuid,network_uuid):
@@ -133,7 +98,7 @@ if __name__ == "__main__":
             print("Did you remember to update the config file?")
             sys.exit(1)
         
-        status,resp = get_images(mycluster)
+        status,resp = mycluster.get_images()
         all_images_list = resp["entities"]
         if (sys.argv[1] == "--image"):
             print ("Here are the available images that may be cloned:")
@@ -157,7 +122,7 @@ if __name__ == "__main__":
             print ("Please run", sys.argv[0], "--image to get a list of all images.")
             sys.exit(1)
 
-        status,resp = get_network_info(mycluster)
+        status,resp = mycluster.get_network_info()
         all_networks_list = resp["entities"]
         # We're just going to grab the first network UUID we see.
         # If we wanted to assign a VM to a particular network, we'd match for names instead.
@@ -167,7 +132,7 @@ if __name__ == "__main__":
 
         vm_uuid = create_vm(mycluster,vmdisk_uuid,vm_name,storage_container_uuid,network_uuid)
         # Power on the VM.
-        status,resp = power_on_vm(mycluster,vm_uuid)
+        status,resp = mycluster.power_on_vm(vm_uuid)
         
     except Exception as ex:
         print(ex)

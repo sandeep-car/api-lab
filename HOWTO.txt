@@ -14,6 +14,7 @@ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
 tar zxvf Python-3.7.0.tgz
 cd Python-3.7.0
 # To use newer openssl libraries.
+# Add these to ~/.bashrc otherwise Python won't be able to find the ssl module.
 export LDFLAGS="-L/usr/local/lib64/"
 export LD_LIBRARY_PATH="/usr/local/lib64/"
 export CPPFLAGS="-I/usr/local/include -I/usr/local/include/openssl"

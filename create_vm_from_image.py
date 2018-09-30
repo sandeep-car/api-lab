@@ -99,7 +99,7 @@ if __name__ == "__main__":
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
         mycluster = C.my_api(C.src_cluster_ip,C.src_cluster_admin,C.src_cluster_pwd)
         status, cluster = mycluster.get_cluster_information()
-        if (status < 0):
+        if (status != 200):
             print("Cannot connect to ",cluster)
             print("Did you remember to update the config file?")
             sys.exit(1)

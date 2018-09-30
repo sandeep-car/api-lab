@@ -88,3 +88,19 @@ class my_api():
         server_response = self.sessionv2.post(cluster_url, data=json.dumps(vm_power_post))
         # print("Response code: %s" % server_response.status_code)
         return server_response.status_code ,json.loads(server_response.text)
+
+    # Just hang out until the task is complete.
+    def poll_task(self, task_uuid):
+
+        cluster_url = self.base_urlv2 + "tasks/poll/"
+        vm_poll_post = {"completed_tasks": [task_uuid]}
+        print("Polling task %s. Cluster_URL %s" % (task_uuid,cluster_url))
+        # Loop until status is succeeded.
+        while True:
+            server_response = self.sessionv2.post(cluster_url, data=json.dumps(vm_poll_post))
+            r = json.loads(server_response.text)
+            ps = str(r["completed_tasks_info"][0]["progress_status"])
+            if ps == "Succeeded":
+                break
+        # End while loop
+        return

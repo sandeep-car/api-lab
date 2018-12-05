@@ -32,7 +32,7 @@ def PrintUsage():
 def clonevm(mycluster,vmid,vm_name):
 
     vm_clone_proto = {
-        "overrideNetworkConfig": "false",
+        "override_network_config": False,
         "name": vm_name + "_clone",
         "uuid": str(uuid.uuid4()),
     }

@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.7
+#!/usr/local/bin/python3.8
 #
 # DISCLAIMER: This script is not supported by Nutanix. Please contact
 # Sandeep Cariapa (sandeep.cariapa@nutanix.com) if you have any questions.

@@ -13,7 +13,7 @@ tar zxvf openssl-1.1.1.tar.gz; cd openssl-1.1.1
 ./config --prefix=/usr/local/ --openssldir=/usr/local/ shared zlib
 make; make install
 mkdir -p ~/source/python3; cd ~/source/python3;  wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tgz
-tar zxvf Python-3.7.0.tgz; cd Python-3.7.0
+tar xzvf Python-3.8.1.tgz ; cd Python-3.8.1
 # --enable-optimization seems to increase time of build.
 ./configure --prefix=/usr/local  --with-openssl=/usr/local
 make ; make altinstall

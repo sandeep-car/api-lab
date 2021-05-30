@@ -8,7 +8,7 @@ export LDFLAGS="-L/usr/local/lib64/"
 export LD_LIBRARY_PATH="/usr/local/lib64/"
 export CPPFLAGS="-I/usr/local/include -I/usr/local/include/openssl"
 . ~/.bashrc
-mkdir -p ~/source/openssl; cd ~/source/openssl; wget https://www.openssl.org/source/openssl-1.1.1.tar.gz
+mkdir -p ~/source/openssl; cd ~/source/openssl; wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz
 tar zxvf openssl-1.1.1.tar.gz; cd openssl-1.1.1
 ./config --prefix=/usr/local/ --openssldir=/usr/local/ shared zlib
 make; make install

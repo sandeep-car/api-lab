@@ -9,7 +9,7 @@ export LD_LIBRARY_PATH="/usr/local/lib64/"
 export CPPFLAGS="-I/usr/local/include -I/usr/local/include/openssl"
 . ~/.bashrc
 mkdir -p ~/source/openssl; cd ~/source/openssl; wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz
-tar zxvf openssl-1.1.1.tar.gz; cd openssl-1.1.1
+tar zxvf openssl-1.1.1k.tar.gz; cd openssl-1.1.1k
 ./config --prefix=/usr/local/ --openssldir=/usr/local/ shared zlib
 make; make install
 mkdir -p ~/source/python3; cd ~/source/python3;  wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tgz

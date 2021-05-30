@@ -18,8 +18,8 @@ tar zxvf Python-3.9.5.tgz ; cd Python-3.9.5
 ./configure --prefix=/usr/local  --with-openssl=/usr/local
 make ; make altinstall
 cd /usr/local/bin
-ln -s pip3.8 pip
-ln -s python3.8 python
+ln -s pip3.9 pip
+ln -s python3.9 python
 cd ~/source
 git clone git://github.com/requests/requests.git
 cd requests
